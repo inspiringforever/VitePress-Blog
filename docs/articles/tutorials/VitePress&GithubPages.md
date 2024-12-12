@@ -69,13 +69,7 @@ export default defineConfig({
 
 
 ## GithubPages
-### Git连接Github中创建的仓库
-```sh
-git init
-git add . # 记得配置.gitignore文件
-git commit -m "1"
-git remote add origin https://github.com/your-username/your-repo-name.git
-```
+
 ### GitHub
 本地项目文件夹中新建 /.github/workflows/deploy.yml 文件
 ```yml
@@ -85,12 +79,13 @@ on:
   push:
     branches:
       - main
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest  
-      - uses: actions/setup-node@latest  
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         # with:
         #   node-version: '16' 
       - run: npm install -g pnpm
@@ -100,7 +95,7 @@ jobs:
         run: pnpm docs:build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@latest  
+        uses: peaceiris/actions-gh-pages@v3 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
@@ -108,6 +103,12 @@ jobs:
 这个执行action脚本执行后会创建一个gh-pages分支，
 然后将dist文件夹中的内容推送到gh-pages分支
 
-
-
+### 初始化Git 连接Github中创建的仓库
+```sh
+git init
+git add . # 记得配置.gitignore文件
+git commit -m "1"
+git branch -M main
+git remote add origin https://github.com/inspiringforever/VitePress-Blog.git 
+git push -u origin main
 
