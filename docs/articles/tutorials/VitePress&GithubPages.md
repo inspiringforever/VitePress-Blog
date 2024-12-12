@@ -94,7 +94,7 @@ jobs:
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3 
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
