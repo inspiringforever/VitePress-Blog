@@ -7,7 +7,7 @@ hero:
   text: 
   tagline: A blog that shares technology.
   image:
-    src: /public/headshot.jpg
+    src: /headshot.jpg
     alt: headshot
   actions:
     - theme: alt
@@ -21,7 +21,7 @@ features:
     title: Simple and minimal, always
     details: Lorem ipsum...
   - icon:
-      src: /public/favicon.png
+      src: /favicon.png
     title: Another cool feature
     details: Lorem ipsum...
   - icon: 🌰
@@ -31,9 +31,9 @@ features:
 ---
 
 
-
 <style>
 :root {
+  margin-top:100px;
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
 
@@ -53,5 +53,4 @@ features:
   }
 }
 </style>
-
 
