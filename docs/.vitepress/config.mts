@@ -2,12 +2,12 @@ import { defineConfig } from 'vitepress'
 const base = '/VitePress-Blog/'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  // base: base,
+  base: base,
   title: "sishui' blog",
   description: "A VitePress Blog",
   head: [
     ['link', { rel: 'icon',type:"image/png",href: `/favicon.png` }],
-    // ['link', { rel: 'icon',type:"image/png",href: `${base}favicon.png` }],
+    ['link', { rel: 'icon',type:"image/png",href: `${base}favicon.png` }],
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
