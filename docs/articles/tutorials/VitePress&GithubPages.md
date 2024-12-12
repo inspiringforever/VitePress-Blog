@@ -71,6 +71,16 @@ export default defineConfig({
 ## GithubPages
 
 ### GitHub
+在github上创建一个仓库
+
+打开 Settings->Actions:General
+下拉勾选到Workflow permissions
+✔ Read and write permissions
+
+Save保存 给Actions读写权限
+
+并将本地项目推送到仓库
+
 本地项目文件夹中新建 /.github/workflows/deploy.yml 文件
 ```yml
 name: Deploy
@@ -79,31 +89,33 @@ on:
   push:
     branches:
       - main
-      
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        # with:
-        #   node-version: '16' 
-      - run: npm install -g pnpm
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - run: npm i pnpm -g
       - run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm docs:build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3 
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
+
 ```
 这个执行action脚本执行后会创建一个gh-pages分支，
 然后将dist文件夹中的内容推送到gh-pages分支
 
 ### 初始化Git 连接Github中创建的仓库
+
 ```sh
 git init
 git add . # 记得配置.gitignore文件
@@ -111,4 +123,4 @@ git commit -m "1"
 git branch -M main
 git remote add origin https://github.com/inspiringforever/VitePress-Blog.git 
 git push -u origin main
-
+```
